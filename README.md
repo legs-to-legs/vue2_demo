@@ -22,3 +22,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+无法使用less解决办法：降级
+npm install less@3.9.0 -s
+npm install less-loader@5.0.0 -s
+
+
+ntework不显示mock接口原因：
+mockjs只是拦截地址，直接返回mock数据，并不会发送真实请求，故在network不显示

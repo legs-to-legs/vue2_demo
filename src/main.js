@@ -3,6 +3,21 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import '@/mock'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import less from 'less'
+
+Vue.use(ElementUI)
+Vue.use(less)
+
+// 全局过滤器
+import * as filters from './filters' 
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 Vue.config.productionTip = false
 
 new Vue({
