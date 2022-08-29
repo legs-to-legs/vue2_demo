@@ -29,7 +29,7 @@ const routes = [
   }, {
     path: '/testemit',
     name: 'testEmit',
-    component: () => import('../views/testemit.vue')
+    component: () => import('../views/testEmit/fatheremit.vue')
   }
 ]
 
