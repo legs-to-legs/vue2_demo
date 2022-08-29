@@ -26,7 +26,7 @@ const routes = [
     path: '/mockdata',
     name: 'mockData',
     component: () => import('../views/mockdata.vue')
-  },{
+  }, {
     path: '/testemit',
     name: 'testEmit',
     component: () => import('../views/testemit.vue')

@@ -1,11 +1,11 @@
 <template>
     <div>
-        testemit
+        childemit
     </div>
 </template>
 
 <script>
 export default {
-  name: 'testEmit'
+    name: 'childEmit'
 }
 </script>
