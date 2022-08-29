@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # demo_vue2
 
 ## Project setup
@@ -31,3 +32,6 @@ npm install less-loader@5.0.0 -s
 
 ntework不显示mock接口原因：
 mockjs只是拦截地址，直接返回mock数据，并不会发送真实请求，故在network不显示
+=======
+# vue2_demo
+>>>>>>> 29dd245b931ac82462dff43dd0d545e98da02842
