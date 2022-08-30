@@ -8,17 +8,25 @@
         
         <div style="margin: 20px 0;">----------------------------------------</div>
 
-        <child-emit ref="childfn" :datalist="propdata" :parentmethod="emitparentmethod" @childEvent="getmsg" />
+        <child-emit ref="childfn" :datalist="propdata" :parentmethod="emitparentmethod" @childEvent="getmsg"
+                    :proptitle.sync="synctitle"
+         />
+
+        <div style="margin: 20px 0;">----------------------------------------</div>
+        <bro-emit />
+        
     </div>
 </template>
 
 <script>
 import childEmit from './components/childemit.vue'
+import broEmit from './components/broemit.vue'
 
 export default {
   name: 'testEmit',
   components: {
-    childEmit
+    childEmit,
+    broEmit
   },
   data() {
     return {
@@ -32,7 +40,8 @@ export default {
             name: 'c',
             value: '3'
         }],
-        childmsg: ''
+        childmsg: '',
+        synctitle: 'aaaaaaaa'
     }
   },
   methods: {

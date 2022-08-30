@@ -11,12 +11,16 @@ import less from 'less'
 
 // 全局过滤器
 import * as filters from './filters'
-
-Vue.use(ElementUI)
-Vue.use(less)
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+
+import Bus from 'vue-bus'
+Vue.use(Bus)
+
+Vue.use(ElementUI)
+Vue.use(less)
+
 
 Vue.config.productionTip = false
 
