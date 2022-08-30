@@ -14,9 +14,12 @@ export default {
         }
     },
     mounted() {
-        this.$bus.on('changmsg', (val) => {
+        this.$bus.on('changemsg', (val) => {
             this.msg = val
         })
+    },
+    destroyed() {
+        this.$bus.off('changemsg')
     }
 }
 </script>

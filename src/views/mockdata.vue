@@ -64,7 +64,10 @@ export default {
   methods: {
     // mockjs只是拦截地址，直接返回mock数据，并不会发送真实请求，故在network不显示
     getData () {
-      getTableData().then(res => {
+      let param = {
+        a: '1'
+      }
+      getTableData(param).then(res => {
         this.tableData = res.data
       })
     }

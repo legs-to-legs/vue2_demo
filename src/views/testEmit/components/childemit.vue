@@ -81,7 +81,7 @@ export default {
             this.$emit('update:proptitle', this.newproptitle)
         },
         sendbroMsg() {
-            this.$bus.emit('changmsg', this.amsg)
+            this.$bus.emit('changemsg', this.amsg)
         }
     }
 }

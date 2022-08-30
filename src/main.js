@@ -14,6 +14,11 @@ import * as filters from './filters'
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+/*
+  Object.keys(obj) 返回属性名数组
+  Object.keys(str) Object.keys(arr) 返回索引数组
+  Object.keys(fun())  返回[] 或者属性名数组
+*/
 
 import Bus from 'vue-bus'
 Vue.use(Bus)
