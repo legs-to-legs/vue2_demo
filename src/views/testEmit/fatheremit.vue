@@ -19,6 +19,12 @@
 </template>
 
 <script>
+/**
+ * 爷孙组件之间方法传递除了使用bus事件总线之外
+ * 可以在父组件的子组件上加上
+ * v-on="$listeners"
+ * v-bind="$attrs"
+ */
 import childEmit from './components/childemit.vue'
 import broEmit from './components/broemit.vue'
 

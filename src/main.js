@@ -20,6 +20,10 @@ Object.keys(filters).forEach(key => {
   Object.keys(fun())  返回[] 或者属性名数组
 */
 
+// 全局注册组件
+import testModel from '@/views/components/2.v-model自定义事件/index.vue'
+Vue.component('testModel', testModel)
+
 import Bus from 'vue-bus'
 Vue.use(Bus)
 
