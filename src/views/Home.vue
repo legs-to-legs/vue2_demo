@@ -37,7 +37,35 @@ export default {
         y: '222',
         num: '333'
       }],
-      arr: [1.1, 2.2, 3.3]
+      arr: [1.1, 2.2, 3.3],
+      list: [{
+        lookupcode: '1-0-0',
+        meaning: 'a'
+      },{
+        lookupcode: '1-1-0-0',
+        meaning: 'a1'
+      },{
+        lookupcode: '1-1-1-0',
+        meaning: 'a11'
+      },{
+        lookupcode: '1-2-0-0',
+        meaning: 'a2'
+      },{
+        lookupcode: '1-2-1-0',
+        meaning: 'a11'
+      },{
+        lookupcode: '2-0-0-0',
+        meaning: 'b'
+      },{
+        lookupcode: '3-0-0-0',
+        meaning: 'c'
+      },{
+        lookupcode: '2-1-0-0',
+        meaning: 'b1'
+      }],
+      level1: [],
+      level2: [],
+      level3: []
     }
   },
   mounted() {
@@ -46,6 +74,7 @@ export default {
     this.b()
     this.join()
     this.testSymbol()
+    this.handleList()
   },
   methods: {
     handleData(arr) {
@@ -110,7 +139,48 @@ export default {
       for(var k of obj) {
         console.log('k==',k)
       }
+    },
+    handleList() {
+      let temp = this.list.map(item => {
+        return {
+          title: item.meaning,
+          index: item.lookupcode,
+          children: [],
+          icon: ''
+        }
+      })
+      temp.forEach((item) => {
+        let indexArr = item.index.split('-')
+        if(indexArr[1] == '0') {
+          this.level1.push(item)
+        }
+        if(indexArr[1] != '0' && indexArr[2] == '0') {
+          this.level2.push(item)
+        }
+        if(indexArr[1] != '0' && indexArr[2] != '0' && indexArr[3] == '0') {
+          this.level3.push(item)
+        }
+      })
+      
+      // this.handleLevel2()
+    },
+    handleLevel2() {
+      this.level2.forEach(item2 => {
+        this.level3.forEach(item3 => {
+          if(item3.index.split('-')[0] == item2.index.split('-')[0] && item3.index.split('-')[1] == item2.index.split('-')[1]) item2.children.push(item3)
+        }) 
+      })
+      this.handleLevel1()
+    },
+    handleLevel1() {
+      this.level1.forEach(item1 => {
+        this.level2.forEach(item2 => {
+          if(item2.index.split('-')[0] == item1.index.split('-')[0]) item1.children.push(item2)
+        }) 
+      })
+      console.log(this.leve1)
     }
+    
   }
 }
 </script>

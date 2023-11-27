@@ -70,6 +70,10 @@ const routes = [
     path: '/testslot',
     name: 'testslot',
     component: () => import('../views/testSlot/index.vue')
+  }, {
+    path: '/testsiderbar',
+    name: 'testsiderbar',
+    component: () => import('../views/components/3.侧边导航栏/index.vue')
   }
 ]
 
