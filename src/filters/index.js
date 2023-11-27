@@ -17,7 +17,7 @@ export function genderType (value) {
  *s：要格式化的数字
  *n：保留几位小数
 */
-export function fSum (s) {
+export function formatNum (s) {
   if (s || s === '0' || s === 0) {
     var n = 2
     s = parseFloat((s + '').replace(/[^\d\.-]/g, '')).toFixed(n) + ''

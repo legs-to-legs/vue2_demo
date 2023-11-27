@@ -26,7 +26,7 @@
             <el-table-column prop="age" label="年龄"></el-table-column>
             <el-table-column prop="money" label="资产">
               <template slot-scope="scope">
-                {{scope.row.money | fSum}}
+                {{scope.row.money | formatNum}}
               </template>
             </el-table-column>
         </el-table>
