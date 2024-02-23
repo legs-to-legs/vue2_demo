@@ -24,6 +24,8 @@ Object.keys(filters).forEach(key => {
 import testModel from '@/views/components/2.v-model自定义事件/index.vue'
 Vue.component('testModel', testModel)
 
+import './permission' // 触发 permission.js 文件
+
 import Bus from 'vue-bus'
 Vue.use(Bus)
 

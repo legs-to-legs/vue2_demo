@@ -5,7 +5,7 @@
 // 5、导出模块 export
 
 import axios from 'axios'
-import {dealRes} from './operate.js'
+import { dealRes } from './operate.js'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL, // url = baseURL + request url
@@ -13,8 +13,8 @@ const service = axios.create({
 })
 service.interceptors.request.use(
   config => {
-    console.log('config=',config)
-    console.log('NODE_ENV',process.NODE_ENV)
+    console.log('config=', config)
+    console.log('NODE_ENV', process.NODE_ENV)
     return config
   },
   error => {
@@ -23,6 +23,7 @@ service.interceptors.request.use(
 )
 service.interceptors.response.use(
   response => {
+    // console.log('response=', response)
     return response.data
     // return dealRes(response)
   },

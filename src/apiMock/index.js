@@ -17,9 +17,27 @@ import axios from 'axios'
 // })
 
 // 获取mock数据
-export function getTableData (data) {
+export function getTableData(data) {
   return request({
     url: '/mock/getTableData',
+    method: 'post',
+    data
+  })
+}
+
+// 登录
+export function login(data) {
+  return request({
+    url: '/mock/login',
+    method: 'post',
+    data
+  })
+}
+
+// 获取用户信息
+export function getUserInfo(data) {
+  return request({
+    url: '/mock/userinfo',
     method: 'post',
     data
   })
