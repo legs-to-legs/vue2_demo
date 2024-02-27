@@ -57,5 +57,8 @@ export default {
       height: 100%;
     }
   }
+  .el-carousel__indicators--horizontal {
+    bottom: 10%;
+  }
 }
 </style>

@@ -34,6 +34,15 @@ export function login(data) {
   })
 }
 
+// 退出登录
+export function logOut(data) {
+  return request({
+    url: '/mock/logout',
+    method: 'post',
+    data
+  })
+}
+
 // 获取用户信息
 export function getUserInfo(data) {
   return request({

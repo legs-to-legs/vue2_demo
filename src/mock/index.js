@@ -8,4 +8,5 @@ import user from './user'
 // Mock.mock(rurl, type, function())
 Mock.mock('/mock/getTableData', 'post', mockData.getTableData)
 Mock.mock('/mock/login', 'post', user.login)
+Mock.mock('/mock/logout', 'post', user.logout)
 Mock.mock('/mock/userinfo', 'post', user.getUserInfo)

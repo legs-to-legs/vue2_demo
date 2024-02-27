@@ -5,17 +5,17 @@
 </template>
 
 <script>
-import router from '@/router';
 export default {
   mounted() {
+    console.log('进入middlepage')
     setTimeout(() => {
-      this.$router.push(`/home`)
-    }, 1000);
+      this.$router.push(`/home`).catch(err => { console.log('跳转home-error===', err) })
+    }, 2000);
   },
   beforeDestroy() {
-    clearTimeout()
-  }
-}
+    clearTimeout();
+  },
+};
 </script>
 
 <style lang="less" scoped>

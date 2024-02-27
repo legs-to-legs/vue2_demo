@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 import Layout from '@/views/login/index' // 顶部导航
 import Home from '@/views/login/main'
+import middlePage from '@/views/middlePage/index'
 
 // vue-router是基于路由和组件的
 // 路由用户设定访问路径的，将路径和组件映射起来。
@@ -38,9 +39,10 @@ import Home from '@/views/login/main'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const constantRoute = [
   {
     path: '/',
+    meta: { title: '首页' },
     component: Layout,
     hidden: true,
     redirect: '/home',
@@ -59,7 +61,8 @@ const routes = [
   {
     path: '/middlepage',
     meta: { title: '中间页' },
-    component: () => import('@/views/middlePage/index.vue')
+    component: middlePage,
+    hidden: true
   }
   // {
   //   path: '/about',
@@ -93,7 +96,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes: constantRoute
 })
 
 // // 全局的前置守卫
