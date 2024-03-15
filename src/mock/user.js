@@ -30,7 +30,7 @@ export default {
             name: '父模块一',
             newScenaries: 0,
             menuType: 'A',
-            path: '/testModel',
+            path: '/testModel1',
             visible: 0,
             children: [
               {
@@ -65,19 +65,41 @@ export default {
                     children: []
                   }
                 ]
-              }
+              },
+              {
+                component: true,
+                componentPath: '/views/dashboard/index',
+                id: '',
+                name: '大屏',
+                newScenaries: 0,
+                menuType: 'B',
+                path: '/dashboard',
+                visible: 0,
+              },
             ]
           },
           {
-            component: true,
-            componentPath: '/views/testModel/model4',
+            component: false,
+            componentPath: null,
             id: '2',
             name: '父模块二',
             newScenaries: 0,
             menuType: 'A',
-            path: '/model4',
+            path: '/testModel2',
             visible: 0,
-            children: []
+            children: [
+              {
+                component: true,
+                componentPath: '/views/testModel/model4',
+                id: '21',
+                name: '子模块三',
+                newScenaries: 0,
+                menuType: 'B',
+                path: '/model4',
+                visible: 0,
+                children: []
+              }
+            ]
           }
         ],
         userName: '腿腿',

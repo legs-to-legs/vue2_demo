@@ -34,7 +34,9 @@
           </template>
           <el-menu-item>
             <template>
-              <el-button size="small" type="primary" @click="login">统一认证</el-button>
+              <el-button size="small" type="primary" @click="login"
+                >统一认证</el-button
+              >
             </template>
           </el-menu-item>
         </el-submenu>
@@ -47,38 +49,41 @@
         class="menu-nav"
         mode="horizontal"
       >
-        <el-menu-item :index="'/home'" :style="fontStyle" @click="goHome">首页</el-menu-item>
-        <template v-for="item in permissionRoutes.filter((it) => it.meta.type && it.meta.type === 'A')">
+        <el-menu-item :index="'/home'" :style="fontStyle" @click="goHome"
+          >首页</el-menu-item
+        >
+        <template
+          v-for="item in permissionRoutes.filter(
+            (it) => it.meta.type && it.meta.type === 'A'
+          )"
+        >
           <template v-if="item.children && item.children.length > 0">
             <el-submenu :index="item.path" :key="item.path">
               <!-- 一级菜单 -->
-            <template slot="title">{{ item.meta.title }}</template>
-            <template v-for="val in item.children">
-              <template v-if="val.children && val.children.length > 0">
-                <el-submenu :index="val.path" :key="val.path">
-                  <!-- 二级菜单 -->
-                  <template slot="title">{{ val.meta.title }}</template>
-                  <template v-for="grand in val.children">
-                    <el-menu-item :index="item.path + val.path + grand.path" :key="grand.path">
-                      <!-- 三级菜单 -->
-                      <span>{{ grand.meta.title }}</span>
-                    </el-menu-item>
-                  </template>
-                </el-submenu>
+              <template slot="title">
+                <span :style="fontStyle">{{ item.meta.title }}</span>
               </template>
-              <template v-else>
-                <el-menu-item :index="item.path + val.path" :key="val.path">
-                  <span>{{ val.meta.title }}</span>
-                </el-menu-item>
+              <template v-for="val in item.children">
+                <template v-if="val.children && val.children.length > 0">
+                  <el-submenu :index="val.path" :key="val.path">
+                    <!-- 二级菜单 -->
+                    <template slot="title">{{ val.meta.title }}</template>
+                    <template v-for="grand in val.children">
+                      <el-menu-item :index="grand.path" :key="grand.path">
+                        <!-- 三级菜单 -->
+                        <span>{{ grand.meta.title }}</span>
+                      </el-menu-item>
+                    </template>
+                  </el-submenu>
+                </template>
+                <template v-else>
+                  <el-menu-item :index="val.path" :key="val.path">
+                    <span>{{ val.meta.title }}</span>
+                  </el-menu-item>
+                </template>
               </template>
-            </template>
             </el-submenu>
           </template>
-          <!-- <template v-else>
-            <el-menu-item :index="item.redirect" :key="item.redirect">
-              <span>{{ item.children[0]?.meta.title }}</span>
-            </el-menu-item>
-          </template> -->
         </template>
         <el-submenu index="5" class="login-box">
           <template slot="title">
@@ -94,6 +99,7 @@
         </el-submenu>
       </el-menu>
     </div>
+    <tags-view></tags-view>
     <router-view></router-view>
   </div>
 </template>
@@ -102,8 +108,12 @@
 import { login, logOut } from "@/apiMock";
 import { setStore, getStore, removeStore } from "@/utils/auth";
 import { mapGetters } from "vuex";
+import router from "@/router";
+import tagsView from "./component/tagsView";
 export default {
-  components: {},
+  components: {
+    tagsView
+  },
   data() {
     return {
       style: { color: "#ffffff", background: "transparent" },
@@ -113,6 +123,21 @@ export default {
   },
   computed: {
     ...mapGetters(["permissionRoutes", "userInfo"]),
+  },
+  watch: {
+    $route: {
+      handler(route) {
+        // console.log('watch---', route)
+        if (route.path == "/home") {
+          this.style = { color: "#ffffff", background: "transparent" };
+          this.fontStyle = { color: "#ffffff" };
+        } else {
+          this.style = { color: "#050505", background: "#ffffff" };
+          this.fontStyle = { color: "#050505" };
+        }
+      },
+      immediate: true,
+    },
   },
   created() {
     // 初始化hasToken为null
@@ -183,7 +208,7 @@ export default {
       }
     },
     handleSelect(key, keypath) {
-      console.log("handleSelect==", key, keypath);
+      // console.log("handleSelect==", key, keypath);
     },
   },
 };

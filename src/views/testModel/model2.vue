@@ -1,5 +1,6 @@
 <template>
   <div>
-    model2
+    router2--son
+    <router-view />
   </div>
 </template>

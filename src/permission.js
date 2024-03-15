@@ -4,7 +4,7 @@ import { setStore, getStore, removeStore } from './utils/auth'
 import { getUserInfo } from '@/apiMock'
 // nprogress 跳转页面顶部进度条
 
-const whiteList = ['/home', '/middlepage']
+const whiteList = ['/home', '/middlepage', '/testmodel', '/testmodel/model']
 
 router.beforeEach(async (to, from, next) => {
   console.log('to=', to)

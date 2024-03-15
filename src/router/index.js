@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Layout from '@/views/login/index' // 顶部导航
 import Home from '@/views/login/main'
 import middlePage from '@/views/middlePage/index'
+import model from '@/views/testModel/model4.vue'
 
 // vue-router是基于路由和组件的
 // 路由用户设定访问路径的，将路径和组件映射起来。
@@ -63,8 +64,20 @@ export const constantRoute = [
     meta: { title: '中间页' },
     component: middlePage,
     hidden: true
-  }
-  // {
+  },
+  {
+    path: '/testmodel',
+    meta: { title: '测试' },
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/testmodel/model',
+        meta: { title: '测试子页面' },
+        component: model
+      }
+    ]
+  },
   //   path: '/about',
   //   name: 'About',
   //   // route level code-splitting

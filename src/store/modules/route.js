@@ -4,14 +4,14 @@ import router from '@/router'
 
 const loadView = (view) => {
   // 要先截取出/views之后的路径再拼接.vue ,否则会报错
-  if (view && view !== '') view.replace('/views/', '')
+  if (view && view !== '') view = view.replace('/views/', '')
   // 路由懒加载
   return (resolve) => require([`@/views/${view}.vue`], resolve)
 }
 
-// const routerView = () => {
-
-// }
+const routerView = () => {
+  return (resolve) => require([`@/views/redirect/routerView.vue`], resolve)
+}
 
 export function filterAsyncRoutes(routes) {
   var res = []
@@ -19,39 +19,18 @@ export function filterAsyncRoutes(routes) {
     // 排除一级不可用目录
     if (!item.path) return
     var obj
-    // if(item.component) {
-    //   obj = {
-    //     path: '/',
-    //     component: Layout,
-    //     hidden: true,
-    //     redirect: item.path,
-    //     children: [
-    //       {
-    //         path: item.path,
-    //         hidden: Boolean(item.visible),
-    //         component: loadView(item.componentPath),
-    //         meta: { 
-    //           title: item.title,
-    //           id: item.id,
-    //           type: item.menuType
-    //         }
-    //       }
-    //     ],
-    //   }
-    // } else {
-      // 一级菜单
-      obj = {
-        path: item.path,
-        hidden: Boolean(item.visible),
-        component: Layout,
-        meta: {
-          title: item.name,
-          id: item.id,
-          type: item.menuType
-        },
-        children: []
-      }
-    // }
+    // 一级菜单
+    obj = {
+      path: item.path,
+      hidden: Boolean(item.visible),
+      component: Layout,
+      meta: {
+        title: item.name,
+        id: item.id,
+        type: item.menuType
+      },
+      children: []
+    }
     
     var objC = []
     item.children.map((child) => {
@@ -59,9 +38,9 @@ export function filterAsyncRoutes(routes) {
       var childObj
       if (child.children && child.children.length > 0) {
         childObj = {
-          path: child.path,
+          path: item.path + child.path,
           hidden: Boolean(child.visible),
-          component: [],
+          component: routerView(),
           meta: {
             title: child.name,
             id: child.id,
@@ -74,7 +53,7 @@ export function filterAsyncRoutes(routes) {
         child.children.map((grand) => {
           if (!grand.path) return
           childObjC.push({
-            path: grand.path,
+            path: item.path + child.path + grand.path,
             hidden: Boolean(grand.visible),
             component: loadView(grand.componentPath),
             meta: {
@@ -89,7 +68,7 @@ export function filterAsyncRoutes(routes) {
       } else {
         // 二级菜单
         childObj = {
-          path: child.path,
+          path: item.path + child.path,
           hidden: Boolean(child.visible),
           component: loadView(child.componentPath),
           meta: {
@@ -116,10 +95,10 @@ const state = {
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.routes = constantRoute.concat(routes)
-    console.log('permission-routes', state.routes)
     routes.forEach(item => {
       router.addRoute(item);
     })// 添加到全局路由对象里
+    // console.log('permission-routes', state.routes, router)
   }
 }
 

@@ -1,9 +1,9 @@
 <template>
-  <div>
-    model4
-  </div>
+  <router-view />
 </template>
 
 <script>
-
+export default {
+  
+};
 </script>
